@@ -1,9 +1,9 @@
 public class HomeWorkApp {
     public static void main(String[] args){
-printThreeWords();
-checkSumSign();
-printColor();
-compareNumbers();
+        printThreeWords();
+        checkSumSign();
+        printColor();
+        compareNumbers();
     }
     public static void printThreeWords(){
         System.out.println("Orange");
