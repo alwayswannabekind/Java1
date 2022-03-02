@@ -1,4 +1,4 @@
-public class SecondLessonTasks {
+public class ThirdLessonTasks {
     public static void main(String[] args) {
 // Первое задание
         System.out.println("Первое задание: ");
