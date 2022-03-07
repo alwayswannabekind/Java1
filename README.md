@@ -809,7 +809,7 @@ public class FourthLessonTasksForCheck {
         }
     }
 
-    private static boolean checkWin(char dot) {
+        private static boolean checkWin(char dot) {
 
         int dotsInARowCount = 0;
         int dotsInAColumnCount = 0;
@@ -864,7 +864,7 @@ public class FourthLessonTasksForCheck {
                     if (k > -1) {
                         if (map[i][map.length - 1 - k] == DOT_X) {
                             dotsInADiagonal1Count++;
-                            if (dotsInADiagonal1Count == DOTS_COUNT_TO_BLOCK) return true;
+                            if (dotsInADiagonal1Count == DOTS_COUNT_TO_WIN) return true;
                         }
                     }
                 }
@@ -877,7 +877,7 @@ public class FourthLessonTasksForCheck {
                     if (k < map.length) {
                         if (map[k][i] == DOT_X) {
                             dotsInADiagonal1Count++;
-                            if (dotsInADiagonal1Count == DOTS_COUNT_TO_BLOCK) return true;
+                            if (dotsInADiagonal1Count == DOTS_COUNT_TO_WIN) return true;
                         }
                     }
                 }
@@ -891,7 +891,7 @@ public class FourthLessonTasksForCheck {
                     if (k > - 1) {
                         if (map[map.length - 1 - k][i] == DOT_X) {
                             dotsInADiagonal1Count++;
-                            if (dotsInADiagonal1Count == DOTS_COUNT_TO_BLOCK) return true;
+                            if (dotsInADiagonal1Count == DOTS_COUNT_TO_WIN) return true;
                         }
                     }
                 }
@@ -905,7 +905,7 @@ public class FourthLessonTasksForCheck {
                     if (k > - 1){
                         if (map[i][k] == DOT_X) {
                             dotsInADiagonal2Count++;
-                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_BLOCK) return true;
+                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
                         }
                     }
                 }
@@ -918,7 +918,7 @@ public class FourthLessonTasksForCheck {
                     if (k > - 1){
                         if (map[i][k] == DOT_X) {
                             dotsInADiagonal2Count++;
-                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_BLOCK) return true;
+                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
                         }
                     }
                 }
@@ -931,7 +931,7 @@ public class FourthLessonTasksForCheck {
                     if (k < map.length) {
                         if (map[i][k] == DOT_X) {
                             dotsInADiagonal2Count++;
-                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_BLOCK) return true;
+                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
                         }
                     }
                 }
@@ -944,7 +944,7 @@ public class FourthLessonTasksForCheck {
                     if (k < map.length) {
                         if (map[i][k] == DOT_X) {
                             dotsInADiagonal2Count++;
-                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_BLOCK) return true;
+                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
                         }
                     }
                 }
@@ -957,7 +957,7 @@ public class FourthLessonTasksForCheck {
                     if (k < map.length) {
                         if (map[k][i] == DOT_X) {
                             dotsInADiagonal2Count++;
-                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_BLOCK) return true;
+                            if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
                         }
                     }
                 }
@@ -1009,26 +1009,129 @@ public class FourthLessonTasksForCheck {
 
 //Проверяем диагонали
 
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map.length; j++) {
-                if (map[i][i] == DOT_O) {
-                    dotsInADiagonal1Count++;
-                    if (dotsInADiagonal1Count == DOTS_COUNT_TO_WIN) return true;
-                    break;
-                } else dotsInADiagonal1Count = 0;
+// Проверка первой главной диагонали (и диагоналей выше)
+        for (int j = 0; j < map.length; j++) {
+            dotsInADiagonal1Count = 0;
+            for (int i = 0; i < map.length; i++) {
+                int k = i + j;
+                if (k < map.length) {
+                    if (map[i][k] == DOT_O) {
+                        dotsInADiagonal1Count++;
+                        if (dotsInADiagonal1Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
             }
-            for (int j = 0; j < map.length; j++) {
-                if (map[i][map.length - i - 1] == DOT_O) {
-                    dotsInADiagonal2Count++;
-                    if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
-                    break;
-                } else dotsInADiagonal2Count = 0;
-            }
+        }
 
+//Проверка первой главной диагонали (и диагоналей выше) в обратную сторону
+        for (int j = 0; j < map.length; j++) {
+            dotsInADiagonal1Count = 0;
+            for (int i = map.length - 1; i > 0; i--) {
+                int k = map.length - 1 - (i + j);
+                if (k > -1) {
+                    if (map[i][map.length - 1 - k] == DOT_O) {
+                        dotsInADiagonal1Count++;
+                        if (dotsInADiagonal1Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
+            }
+        }
+// Проверка первой главной диагонали (и диагоналей ниже)
+        for (int j = 1; j < map.length; j++) {
+            dotsInADiagonal1Count = 0;
+            for (int i = 0; i < map.length; i++) {
+                int k = i + j;
+                if (k < map.length) {
+                    if (map[k][i] == DOT_O) {
+                        dotsInADiagonal1Count++;
+                        if (dotsInADiagonal1Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
+            }
+        }
+
+//Проверка первой главной диагонали (и диагоналей ниже) в обратную сторону
+        for (int j = 1; j < map.length; j++) {
+            dotsInADiagonal1Count = 0;
+            for (int i = map.length - 1; i > 0; i--) {
+                int k = map.length - 1 - (i + j);
+                if (k > - 1) {
+                    if (map[map.length - 1 - k][i] == DOT_O) {
+                        dotsInADiagonal1Count++;
+                        if (dotsInADiagonal1Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
+            }
+        }
+
+//  Проверка второй главной диагонали (и диагоналей выше)
+        for (int j = 0; j < map.length; j++) {
+            dotsInADiagonal2Count = 0;
+            for (int i = map.length - 1; i > 0; i--) {
+                int k = map.length - 1 - i - j;
+                if (k > - 1){
+                    if (map[i][k] == DOT_O) {
+                        dotsInADiagonal2Count++;
+                        if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
+            }
+        }
+//  Проверка второй главной диагонали (и диагоналей выше) в обратную сторону
+        for (int j = 0; j < map.length; j++) {
+            dotsInADiagonal2Count = 0;
+            for (int i = 0; i < map.length; i++) {
+                int k = map.length - 1 - i - j;
+                if (k > - 1){
+                    if (map[i][k] == DOT_O) {
+                        dotsInADiagonal2Count++;
+                        if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
+            }
+        }
+//  Проверка второй главной диагонали (и диагоналей ниже)
+        for (int j = 0; j < map.length; j++) {
+            dotsInADiagonal2Count = 0;
+            for (int i = map.length - 1; i > 0; i--) {
+                int k = map.length - 1 - i + j;
+                if (k < map.length) {
+                    if (map[i][k] == DOT_O) {
+                        dotsInADiagonal2Count++;
+                        if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
+            }
+        }
+//  Проверка второй главной диагонали (и диагоналей ниже)
+        for (int j = 0; j < map.length; j++) {
+            dotsInADiagonal2Count = 0;
+            for (int i = map.length - 1; i > 0; i--) {
+                int k = map.length - 1 - i + j;
+                if (k < map.length) {
+                    if (map[i][k] == DOT_O) {
+                        dotsInADiagonal2Count++;
+                        if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
+            }
+        }
+//  Проверка второй главной диагонали (и диагоналей ниже) в обратную сторону - НЕ РАБОТАЕТ
+        for (int j = map.length - 1; j > 0; j--) {
+            dotsInADiagonal2Count = 0;
+            for (int i = 0; i < map.length; j++) {
+                int k = j - i;
+                if (k < map.length) {
+                    if (map[k][i] == DOT_O) {
+                        dotsInADiagonal2Count++;
+                        if (dotsInADiagonal2Count == DOTS_COUNT_TO_WIN) return true;
+                    }
+                }
+            }
         }
         return false;
     }
-
+    
     private static boolean cellValidation(int x, int y, char dot) {
         if (x < 1 || x > MAP_SIZE || y < 1 || y > MAP_SIZE) {
             System.out.println("Exit map sizes");
@@ -1073,6 +1176,3 @@ public class FourthLessonTasksForCheck {
             }
         }
     }
-}
-
-
